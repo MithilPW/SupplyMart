@@ -93,12 +93,14 @@ export const products = [
 
 ## Screenshots
 
-Add screenshots here (optional):
+### Home
+![Home](./screenshots/home.png)
 
-- `./screenshots/home.png`
-- `./screenshots/products.png`
-- `./screenshots/cart.png`
+### Products
+![Products](./screenshots/products.png)
+
+### Cart
+![Cart](./screenshots/cart.png)
 
 ## License
 
-MIT (or choose your preferred license)
