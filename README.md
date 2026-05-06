@@ -1,70 +1,104 @@
-# Getting Started with Create React App
+# SupplyMart (FitFuel)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A responsive React e-commerce frontend for fitness supplements. Browse products, filter by category, add items to the cart, and view an order summary — with **₹ INR currency formatting** and a **Light/Dark mode toggle**.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- Product catalog + category filter
+- Product cards with local images
+- Cart: add/remove/update quantity
+- Order summary: subtotal + tax + total
+- **₹ INR currency formatting** (via `Intl.NumberFormat`)
+- **Theme toggle** (Dark/Light) with `localStorage` persistence
+- Fully responsive layout (mobile → desktop)
 
-### `npm start`
+## Tech Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- React
+- React Router
+- Context API (cart state)
+- Vanilla CSS (single `global.css` with CSS variables)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Getting Started
 
-### `npm test`
+### Install
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+npm install
+```
 
-### `npm run build`
+### Run locally
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+npm start
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Open: http://localhost:3000
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Scripts
 
-### `npm run eject`
+- `npm start` — run dev server
+- `npm test` — run tests (watch mode)
+- `npm run build` — production build
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Project Structure
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```text
+src/
+  components/      # Navbar, ProductCard, CartItem
+  pages/           # Home, Products, Cart
+  context/         # CartContext (global cart state)
+  data/            # products.js (static products)
+  assets/          # local product images
+  styles/          # global.css
+  utils.js         # formatINR()
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Currency (₹ INR)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+All prices are displayed using a shared formatter:
 
-## Learn More
+- `src/utils.js` → `formatINR(value)`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+To change currency/locale later, update the formatter configuration in `src/utils.js`.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Theme Toggle (Dark/Light)
 
-### Code Splitting
+- The theme is stored in `localStorage` (`theme = dark | light`)
+- Applied by setting `data-theme` on the `<html>` element
+- CSS variables swap automatically in `src/styles/global.css`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Adding Product Images (Local)
 
-### Analyzing the Bundle Size
+Recommended approach:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+1. Put images in `src/assets/`
+2. Import them in `src/data/products.js`
+3. Set `image: importedImage`
 
-### Making a Progressive Web App
+Example:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```js
+import wheyImg from "../assets/protein.jpg";
 
-### Advanced Configuration
+export const products = [
+  {
+    id: 1,
+    name: "Whey Protein Powder",
+    price: 5000,
+    image: wheyImg,
+  },
+];
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Screenshots
 
-### Deployment
+Add screenshots here (optional):
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- `./screenshots/home.png`
+- `./screenshots/products.png`
+- `./screenshots/cart.png`
 
-### `npm run build` fails to minify
+## License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+MIT (or choose your preferred license)
